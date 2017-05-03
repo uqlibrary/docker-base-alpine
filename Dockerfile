@@ -3,8 +3,11 @@ FROM alpine:edge
 ENV BUILD_DEPS autoconf make g++ gcc groff less py-pip
 
 RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+    # Upgrade
+    && apk upgrade --no-cache \
+
     # Required deps
-    && apk add --update bash wget curl python jq \
+    && apk add --upgrade --no-cache bash wget curl python jq \
 
     # Build deps
     && apk add --no-cache --virtual .build-deps $BUILD_DEPS \
@@ -14,4 +17,4 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositor
 
     # Remove build deps
     && rm -rf /var/cache/apk/* \
-    && apk --purge del .build-deps
+    && apk del --purge .build-deps
