@@ -2,19 +2,19 @@ FROM alpine:3.8
 
 ENV BUILD_DEPS autoconf make g++ gcc groff less py-pip
 
-RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+RUN \
     # Upgrade
-    && apk upgrade --no-cache \
-
+    apk upgrade --no-cache && \
+    #
     # Required deps
-    && apk add --upgrade --no-cache bash wget curl python jq \
-
+    apk add --upgrade --no-cache bash inotify-tools wget curl python jq nano && \
+    #
     # Build deps
-    && apk add --no-cache --virtual .build-deps $BUILD_DEPS \
-
+    apk add --no-cache --virtual .build-deps $BUILD_DEPS && \
+    #
     # AWS CLI
-    && pip install awscli \
-
+    pip install awscli && \
+    #
     # Remove build deps
-    && rm -rf /var/cache/apk/* \
-    && apk del --purge .build-deps
+    rm -rf /var/cache/apk/* && \
+    apk del --purge .build-deps
