@@ -1,4 +1,4 @@
-FROM alpine:3.10.2
+FROM alpine:3.9.4
 
 ENV BUILD_DEPS autoconf make g++ gcc groff less py-pip
 
