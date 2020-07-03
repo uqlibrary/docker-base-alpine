@@ -1,13 +1,13 @@
 FROM alpine:20200626
 
-ENV BUILD_DEPS autoconf make g++ gcc groff less py-pip
+ENV BUILD_DEPS autoconf make g++ gcc groff
 
 RUN \
     # Upgrade
     apk upgrade --no-cache && \
     #
     # Required deps
-    apk add --upgrade --no-cache bash inotify-tools wget curl python3 jq nano && \
+    apk add --upgrade --no-cache bash inotify-tools wget curl python3 jq nano less py-pip && \
     #
     # Build deps
     apk add --no-cache --virtual .build-deps $BUILD_DEPS && \
