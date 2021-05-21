@@ -1,19 +1,20 @@
-FROM alpine:3.13.1
+FROM alpine:3.13.5
 
-ENV BUILD_DEPS autoconf make g++ gcc groff
+ENV BUILD_DEPS autoconf make g++ gcc
 
 RUN \
     # Upgrade
     apk upgrade --no-cache && \
     #
     # Required deps
-    apk add --upgrade --no-cache bash inotify-tools wget curl python3 jq nano less py-pip && \
+    apk add --upgrade --no-cache bash inotify-tools wget curl python3 jq nano less groff py-pip && \
     #
     # Build deps
     apk add --no-cache --virtual .build-deps $BUILD_DEPS && \
     #
     # AWS CLI
     pip install awscli && \
+    aws --version && \
     #
     # Remove build deps
     rm -rf /var/cache/apk/* && \
