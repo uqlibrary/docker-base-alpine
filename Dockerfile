@@ -7,7 +7,7 @@ RUN \
     apk upgrade --no-cache && \
     #
     # Required deps
-    apk add --upgrade --no-cache bash inotify-tools wget curl python3 jq nano less groff py-pip && \
+    apk add --upgrade --no-cache bash inotify-tools wget curl python3 jq nano less groff py-pip xz && \
     #
     # Build deps
     apk add --no-cache --virtual .build-deps $BUILD_DEPS && \
