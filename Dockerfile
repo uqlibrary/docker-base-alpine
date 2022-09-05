@@ -1,4 +1,4 @@
-FROM alpine:3.15.6
+FROM alpine:3.9.6
 
 ENV BUILD_DEPS autoconf make g++ gcc
 
