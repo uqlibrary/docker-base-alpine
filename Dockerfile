@@ -1,7 +1,7 @@
-ARG ALPINE_VERSION=3.15.8
+ARG ALPINE_VERSION=3.15.10
 FROM python:3.10-alpine3.15 as builder
 
-ARG AWS_CLI_VERSION=2.11.18
+ARG AWS_CLI_VERSION=2.13.25
 RUN apk add --no-cache git unzip groff build-base libffi-dev cmake
 RUN git clone --single-branch --depth 1 -b ${AWS_CLI_VERSION} https://github.com/aws/aws-cli.git
 
